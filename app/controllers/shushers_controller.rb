@@ -1,0 +1,2 @@
+class ShushersController < ApplicationController
+end

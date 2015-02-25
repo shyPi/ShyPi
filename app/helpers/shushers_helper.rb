@@ -1,0 +1,2 @@
+module ShushersHelper
+end

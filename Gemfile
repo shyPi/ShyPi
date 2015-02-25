@@ -34,7 +34,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem "rspec-rails"
 gem "bootstrap-sass"
-gem 'sass-rails', '>= 3.2'
+#gem 'sass-rails'  #already included, see above
 gem "simple_form"
 gem "quiet_assets"
 
