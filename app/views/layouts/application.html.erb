@@ -1,14 +1,37 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>ShyPi</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>shyPi</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class="container">
+      <a href="/" class="animated rubberBand">Home</a> |
+      <a href="/about">About Us</a> |
+      <%= link_to "New Shusher", new_shusher_path %> |
+      <%= link_to "List all Shushers", shushers_path %>
 
-<%= yield %>
 
-</body>
+      <!-- flash notice and alert for gem 'devise' usage -->
+      <%#= flash[:notice] || flash[:alert] %>
+      <% flash.each do |name, msg| %>
+        <% if name=="notice" %>
+          <%= content_tag :div, msg, class: "alert alert-info", role: "alert" %>
+        <% elsif name=="alert" %>
+          <%= content_tag :div, msg, class: "alert alert-warning", role: "alert" %>
+        <% elsif name=="error" %>
+          <%= content_tag :div, msg, class: "alert alert-danger", role: "alert" %>
+        <% else %>
+          <%= content_tag :div, msg, class: "alert alert-info", role: "alert" %>
+        <% end %>
+      <% end %>
+
+
+      <%= yield %>
+
+
+    </div>
+  </body>
 </html>

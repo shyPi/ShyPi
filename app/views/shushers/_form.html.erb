@@ -1,0 +1,9 @@
+<%#= form_for @shusher, multipart: true  do |f|    <--- multipart is for the image attachment upload  %>
+<%= simple_form_for @shusher, html: { class: 'form-horizontal' } do |f| %>
+  <%= f.input :name, label: "Shusher name" %>
+  <%= f.input :sound_threshold, label: "How loud (Sound threshold)" %>
+  <%= f.input :shout_msg, label: "Shout msg?" %>
+  <%#= f.input :image %>  <!-- carrierwave attachment -->
+
+  <%= f.submit class: "btn btn-primary" %>
+<% end %>

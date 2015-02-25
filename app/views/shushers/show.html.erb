@@ -1,0 +1,9 @@
+<h1><%= @shusher.name %></h1>
+<div class="row">
+  <%= @shusher.sound_threshold %>
+  <%= @shusher.shout_msg %>
+
+  <%= link_to "Edit Shusher", edit_shusher_path(@shusher) %>
+  <%= link_to "Delete Shusher",  shusher_path(@shusher), 
+    method: :delete, data: {confirm: "Delete this Shusher model?"} %>
+</div>

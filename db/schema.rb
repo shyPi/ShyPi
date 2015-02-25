@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20150225004433) do
   create_table "shushers", force: :cascade do |t|
     t.string   "name"
     t.integer  "sound_threshold"
-    t.string   "shout_message"
+    t.string   "shout_msg"
     t.string   "ip_address"
     t.float    "latitude"
     t.float    "longitude"
