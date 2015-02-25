@@ -1,2 +1,2 @@
-# ShyPi
-ShyPi project CC
+# shyPi
+shyPi project CC
