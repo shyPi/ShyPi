@@ -1,5 +1,10 @@
 class ShushersController < ApplicationController
+  before_action :authenticate_user!
   before_action :find_shusher, only: [ :update, :show, :destroy ]
+
+  def new
+    render nothing:true
+  end
 
   def create
     @shusher = Shusher.new shusher_params
