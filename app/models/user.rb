@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable, omniauth_providers: [:twitter, :facebook]
+         :omniauthable,
+         omniauth_providers: [:twitter, :facebook, :google_oauth2, :github]
 
   serialize :omniauth_raw_data, Hash
 
@@ -41,7 +42,42 @@ class User < ActiveRecord::Base
                          uid: omniauth_data["uid"],
                          first_name: omniauth_data["info"]["first_name"],
                          last_name: omniauth_data["info"]["last_name"],
+                         email: omniauth_data["info"]["email"],
                          facebook_consumer_token: omniauth_data["credentials"]["token"],
+                         omniauth_raw_data: omniauth_data
+                         )
+    end
+    user
+  end
+
+  def self.find_or_create_from_google_oauth2(omniauth_data)
+    user = User.where(provider: "google_oauth2", uid: omniauth_data["uid"]).first
+    unless user
+      # create user with google_oauth2 data
+      google_name = omniauth_data["info"]["name"].split #google_oauth2 only returns a name (both first + last) so we need to parse the name field first      
+      user = User.create(provider: "google_oauth2", 
+                         uid: omniauth_data["uid"],
+                         first_name: google_name[0],
+                         last_name: google_name[1],
+                         email: omniauth_data["info"]["email"],
+                         google_consumer_token: omniauth_data["credentials"]["token"],
+                         omniauth_raw_data: omniauth_data
+                         )
+    end
+    user
+  end
+
+  def self.find_or_create_from_github(omniauth_data)
+    user = User.where(provider: "github", uid: omniauth_data["uid"]).first
+    unless user
+      # create user with Github data
+      github_name = omniauth_data["info"]["name"].split #google_oauth2 only returns a name (both first + last) so we need to parse the name field first    
+      user = User.create(provider: "github",
+                         uid: omniauth_data["uid"],
+                         first_name: github[0],
+                         last_name: github[1],
+                         email: omniauth_data["info"]["email"],
+                         github_token: omniauth_data["credentials"]["token"],
                          omniauth_raw_data: omniauth_data
                          )
     end

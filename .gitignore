@@ -8,8 +8,10 @@
 /.bundle
 
 /config/initializers/api_twitter_vars.rb
-/config/initializers/api_twitter_vars.rb
 /config/initializers/api_facebook_vars.rb
+/config/initializers/api_google_vars.rb
+/config/initializers/api_github_vars.rb
+
 
 # Ignore the default SQLite database.
 /db/*.sqlite3

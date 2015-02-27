@@ -61,8 +61,8 @@ ActiveRecord::Schema.define(version: 20150227015621) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                    default: "", null: false
-    t.string   "encrypted_password",       default: "", null: false
+    t.string   "email",                     default: "", null: false
+    t.string   "encrypted_password",        default: "", null: false
     t.string   "first_name"
     t.string   "last_name"
     t.string   "ip_address"
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20150227015621) do
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",            default: 0,  null: false
+    t.integer  "sign_in_count",             default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -83,7 +83,9 @@ ActiveRecord::Schema.define(version: 20150227015621) do
     t.string   "twitter_consumer_token"
     t.string   "twitter_consumer_secret"
     t.string   "facebook_consumer_token"
-    t.string   "facebook_consumer_secret"
+    t.string   "facebook_token_expires_at"
+    t.string   "google_consumer_token"
+    t.string   "google_token_expires_at"
     t.text     "omniauth_raw_data"
   end
 

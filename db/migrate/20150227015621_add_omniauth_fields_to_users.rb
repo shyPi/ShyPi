@@ -5,7 +5,8 @@ class AddOmniauthFieldsToUsers < ActiveRecord::Migration
     add_column :users, :twitter_consumer_token, :string
     add_column :users, :twitter_consumer_secret, :string
     add_column :users, :facebook_consumer_token, :string
-    add_column :users, :facebook_consumer_secret, :string
+    add_column :users, :google_consumer_token, :string
+    add_column :users, :github_token, :string
     add_column :users, :omniauth_raw_data, :text
 
     add_index :users, [:provider, :uid]

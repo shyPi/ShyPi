@@ -56,9 +56,10 @@ gem "devise" #Devise for user authentication
 gem "activeadmin", github: "activeadmin" #active Admin. 
 gem "omniauth-facebook" #Omniauth with Facebook
 gem "omniauth-twitter" #Omniauth with Twitter as a provider
-
-gem "awesome_print" #gives color coded, nested rails console output
+gem "omniauth-google-oauth2" #omniauth with Google as a provider
+gem "omniauth-github" #omniauth with Github as a provider
 gem "koala" #facebook graph-API gem
+
 
 group :test do  # for test coverage data and visual view
   gem "simplecov", require: false  # only load upon usage
@@ -66,8 +67,8 @@ end
 
 group :development do  #these are required in ~/.irbrc 
   gem "interactive_editor"
-  #gem "awesome_print"
-  gem "hirb"
+  gem "awesome_print" #gives color coded, nested Rails Console output
+  gem "hirb" #gives nice grided Rails Console printout
   gem "letter_opener" #to do with email client/mailer(?)
 end
 

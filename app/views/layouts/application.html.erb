@@ -20,8 +20,10 @@
         <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
       <% else %>
         <%= link_to "Sign In", new_user_session_path %>
-        <%= link_to "Sign In With Twitter", user_omniauth_authorize_path(provider: :twitter), class: "btn btn-info btn-sm" %>
-        <%= link_to "Sign In with Facebook", user_omniauth_authorize_path(provider: :facebook), class: "btn btn-primary btn-sm" %>
+        <%= link_to "Sign in With Twitter", user_omniauth_authorize_path(provider: :twitter), class: "btn btn-info btn-sm" %>
+        <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(provider: :facebook), class: "btn btn-primary btn-sm" %>
+        <%= link_to "Sign in with Google", user_omniauth_authorize_path(provider: :google_oauth2), class: "btn btn-warning btn-sm" %>
+        <%= link_to "Sign in with Github", user_omniauth_authorize_path(provider: :github), class: "btn btn-info btn-sm" %>
       <% end %>
       <hr>
       
