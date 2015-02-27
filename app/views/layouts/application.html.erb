@@ -13,9 +13,18 @@
       <a href="/" class="animated rubberBand">Home</a> |
       <a href="/about">About Us</a> |
       <%= link_to "New Shusher", new_shusher_path %> |
-      <%= link_to "List all Shushers", shushers_path %>
+      <%= link_to "List all Shushers", shushers_path %> |
 
-
+      <% if user_signed_in? %>
+        Hello <%= current_user.first_name %>,
+        <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to "Sign In", new_user_session_path %>
+        <%= link_to "Sign In With Twitter", user_omniauth_authorize_path(provider: :twitter), class: "btn btn-info btn-sm" %>
+        <%= link_to "Sign In with Facebook", user_omniauth_authorize_path(provider: :facebook), class: "btn btn-primary btn-sm" %>
+      <% end %>
+      <hr>
+      
       <!-- flash notice and alert for gem 'devise' usage -->
       <%#= flash[:notice] || flash[:alert] %>
       <% flash.each do |name, msg| %>
