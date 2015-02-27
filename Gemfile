@@ -3,8 +3,10 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# Use postgresql as the database for Active Record
+gem 'pg'
+# # Use sqlite3 as the database for Active Record
+# gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -53,7 +55,10 @@ gem "virtus" #Service objects
 gem "devise" #Devise for user authentication
 gem "activeadmin", github: "activeadmin" #active Admin. 
 gem "omniauth-facebook" #Omniauth with Facebook
+gem "omniauth-twitter" #Omniauth with Twitter as a provider
 
+gem "awesome_print" #gives color coded, nested rails console output
+gem "koala" #facebook graph-API gem
 
 group :test do  # for test coverage data and visual view
   gem "simplecov", require: false  # only load upon usage
@@ -61,7 +66,7 @@ end
 
 group :development do  #these are required in ~/.irbrc 
   gem "interactive_editor"
-  gem "awesome_print"
+  #gem "awesome_print"
   gem "hirb"
   gem "letter_opener" #to do with email client/mailer(?)
 end

@@ -1,5 +1,5 @@
 class ShushersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :find_shusher, only: [ :update, :show, :destroy ]
 
   def new
@@ -7,6 +7,11 @@ class ShushersController < ApplicationController
   end
 
   def create
+
+    #raise params.inspect
+    #raise request.class.to_s.inspect
+    #raise request.env["omniauth.auth"].inspect
+
     @shusher = Shusher.new shusher_params
     if @shusher.save
       redirect_to @shusher, notice: "Shusher created successfully."
