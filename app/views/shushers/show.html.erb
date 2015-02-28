@@ -1,9 +1,12 @@
 <h1><%= @shusher.name %></h1>
-<div class="row">
-  <%= @shusher.sound_threshold %>
-  <%= @shusher.shout_msg %>
+<div class="well">
+  <%= @shusher.sound_threshold %><br>
+  <%= @shusher.shout_msg %><br>
 
-  <%= link_to "Edit Shusher", edit_shusher_path(@shusher) %>
-  <%= link_to "Delete Shusher",  shusher_path(@shusher), 
-    method: :delete, data: {confirm: "Delete this Shusher model?"} %>
+  <!-- 'cancancan' restriction at Viewer level -->
+  <% if can? :manage, @shusher %>
+    <%= link_to "Edit Shusher", edit_shusher_path(@shusher), class: "btn btn-info btn-md" %>
+    <%= link_to "Delete Shusher",  shusher_path(@shusher), 
+      method: :delete, data: {confirm: "Delete this Shusher model?"}, class: "btn btn-danger btn-md" %>
+  <% end %>
 </div>
