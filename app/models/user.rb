@@ -43,7 +43,8 @@ class User < ActiveRecord::Base
                          first_name: omniauth_data["info"]["first_name"],
                          last_name: omniauth_data["info"]["last_name"],
                          email: omniauth_data["info"]["email"],
-                         facebook_consumer_token: omniauth_data["credentials"]["token"],
+                         facebook_token: omniauth_data["credentials"]["token"],
+                         facebook_expires_at: Time.at(omniauth_data["credentials"]["expires_at"]),
                          omniauth_raw_data: omniauth_data
                          )
     end
@@ -60,7 +61,8 @@ class User < ActiveRecord::Base
                          first_name: google_name[0],
                          last_name: google_name[1],
                          email: omniauth_data["info"]["email"],
-                         google_consumer_token: omniauth_data["credentials"]["token"],
+                         google_token: omniauth_data["credentials"]["token"],
+                         google_expires_at: Time.at(omniauth_data["credentials"]["expires_at"]),
                          omniauth_raw_data: omniauth_data
                          )
     end
@@ -78,6 +80,7 @@ class User < ActiveRecord::Base
                          last_name: github[1],
                          email: omniauth_data["info"]["email"],
                          github_token: omniauth_data["credentials"]["token"],
+                         github_expires_at: Time.at(omniauth_data["credentials"]["expires_at"]),
                          omniauth_raw_data: omniauth_data
                          )
     end

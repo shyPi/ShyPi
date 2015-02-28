@@ -6,7 +6,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :encrypted_password, null: false, default: ""
       t.string :first_name
       t.string :last_name
-      t.string :ip_address
+      t.inet :ip_address
+      t.macaddr :mac_address
       t.string :latitude
       t.string :longitude
       
