@@ -3,8 +3,10 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# Use postgresql as the database for Active Record
+gem 'pg'
+# # Use sqlite3 as the database for Active Record
+# gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -32,6 +34,56 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem "rspec-rails"
+gem "bootstrap-sass"
+#gem 'sass-rails'  #already included, see above
+gem "simple_form"
+gem "quiet_assets"
+
+gem "cancancan"   # for user authorization
+gem "cocoon" # for nested attributes
+gem "aasm" # for Finite State Machine 
+
+gem "geocoder" #for using Geocoding
+gem "gmaps4rails" #for use with Google Map
+gem "underscore-rails" # JS library "underscore" for Rails
+
+
+gem "draper" #Decorator pattern object extension
+gem "virtus" #Service objects
+
+gem "devise" #Devise for user authentication
+gem "activeadmin", github: "activeadmin" #active Admin. 
+gem "omniauth-facebook" #Omniauth with Facebook
+gem "omniauth-twitter" #Omniauth with Twitter as a provider
+
+gem "awesome_print" #gives color coded, nested rails console output
+gem "koala" #facebook graph-API gem
+
+group :test do  # for test coverage data and visual view
+  gem "simplecov", require: false  # only load upon usage
+end
+
+group :development do  #these are required in ~/.irbrc 
+  gem "interactive_editor"
+  #gem "awesome_print"
+  gem "hirb"
+  gem "letter_opener" #to do with email client/mailer(?)
+end
+
+group :development, :test do
+  gem "pry-rails" #??
+  gem "better_errors" # shows more meaningful error messages
+  gem "binding_of_caller" #works with "better_error" to give local variable inspection  
+
+  gem 'capybara' #capybara for integration testing
+  gem 'launchy'   #also for capybara testing 
+  gem 'factory_girl_rails'  #this is for generate Rspec testing
+  
+  gem 'faker'
+  gem 'rails-erd' #auto generate visual ERD diagram based on the models in current project
+end
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -42,4 +94,3 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
-
