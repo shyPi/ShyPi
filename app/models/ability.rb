@@ -4,8 +4,8 @@ class Ability
   def initialize(user)
     user ||= User.new  #if user is not logged in, then create guest user is never nil.
 
-    can :manage, Question do |question|
-        question.user == user
+    can :manage, Shusher do |shusher|
+      shusher.user == user
     end
 
     # add the code below if you want teammates to have EDIT access, see changes in 'edit' and 'update' methods in questions_controller.rb

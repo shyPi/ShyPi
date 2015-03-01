@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
          :omniauthable,
          omniauth_providers: [:twitter, :facebook, :google_oauth2, :github]
 
+  has_many :shushers, dependent: :nullify
+
   serialize :omniauth_raw_data, Hash
 
   def email_required?
@@ -13,7 +15,8 @@ class User < ActiveRecord::Base
   end
 
   def password_required?
-    provider.nil?
+    #provider.nil?   #if it is via a provider, don't have to register a password.
+    false
   end
 
   def self.find_or_create_from_twitter(omniauth_data)
