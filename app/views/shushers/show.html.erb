@@ -1,9 +1,53 @@
 <h1><%= @shusher.name %></h1>
 <div class="row">
-  <%= @shusher.sound_threshold %>
-  <%= @shusher.shout_msg %>
+  <div class="col-sm-6 col-md-6">
 
-  <%= link_to "Edit Shusher", edit_shusher_path(@shusher) %>
-  <%= link_to "Delete Shusher",  shusher_path(@shusher), 
-    method: :delete, data: {confirm: "Delete this Shusher model?"} %>
+    <div class="well">
+      <ul>
+        <li>sound_threshold: <%= @shusher.sound_threshold %></li>
+        <li>shout_msg: <%= @shusher.shout_msg %></li>
+        <li>ip_address: <%= @shusher.ip_address %></li>
+        <li>mac_address: <%= @shusher.mac_address %></li>
+        <li>belongs to user: <%= @shusher.user.first_name %> <%= @shusher.user.last_name %></li>
+      </ul>
+      <!-- 'cancancan' restriction at Viewer level -->
+      <% if can? :manage, @shusher %>
+        <%= link_to "Edit Shusher", edit_shusher_path(@shusher), class: "btn btn-info btn-md" %>
+        <%= link_to "Delete Shusher",  shusher_path(@shusher), 
+          method: :delete, data: {confirm: "Delete this Shusher model?"}, class: "btn btn-danger btn-md" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-sm-6 col-md-6">
+    <div style='width: 300px;'> <!-- geoMap here -->
+      <div id="map" style='width: 400px; height: 500px;'></div>
+    </div>
+
+    <!-- map for where the script targets is in line #46 above -->
+    <script>
+      $(document).ready(function() {
+        handler = Gmaps.build('Google');
+        handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+        markers = handler.addMarkers([
+          {
+            // "lat": 0,200
+            // "lng": 0,
+            // "infowindow": "hello!",
+            // "picture": {
+            //   "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
+            //   "width":  36,
+            //   "height": 36
+            // },
+            "lat": <%= @shusher.latitude %>,
+            "lng": <%= @shusher.longitude %>,
+            "infowindow": "<%= @shusher.name %>"
+          }
+        ]);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        handler.getMap().setZoom(6);  // sets the zoom level on the map
+      });
+    });
+    </script>
+  </div>
 </div>

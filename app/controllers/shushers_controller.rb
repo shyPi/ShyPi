@@ -1,13 +1,13 @@
 class ShushersController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :find_shusher, only: [ :update, :show, :destroy ]
+  before_action :find_shusher, only: [ :edit, :update, :show, :destroy ]
 
   def new
-    render nothing:true
+    #render nothing:true
+    @shusher = Shusher.new
   end
 
   def create
-
     #raise params.inspect
     #raise request.class.to_s.inspect
     #raise request.env["omniauth.auth"].inspect
@@ -16,8 +16,12 @@ class ShushersController < ApplicationController
     if @shusher.save
       redirect_to @shusher, notice: "Shusher created successfully."
     else
-      #render :new
+      render :new
     end
+  end
+
+  def edit
+    #find_shusher
   end
 
   def update
@@ -25,7 +29,7 @@ class ShushersController < ApplicationController
     if @shusher.update shusher_params
       redirect_to @shusher, notice: "Shusher updated successfully."
     else
-      #render :edit
+      render :edit
     end
   end
 
@@ -34,6 +38,8 @@ class ShushersController < ApplicationController
   end
 
   def index
+    return get_by_mac_address if params[:mac_address]
+
     @entire_shushers = Shusher.all
   end
 
@@ -50,6 +56,11 @@ class ShushersController < ApplicationController
     end
 
     def shusher_params
-      params.require(:campaign).permit(:name, :sound_threshold, :shout_msg)
+      params.require(:shusher).permit(:name, :sound_threshold, :shout_msg)
+    end
+
+    def get_by_mac_address
+      @shusher = Shusher.find_by_mac_address(params[:mac_address])
+      render json: @shusher.to_json
     end
 end

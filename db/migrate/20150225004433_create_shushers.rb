@@ -4,7 +4,8 @@ class CreateShushers < ActiveRecord::Migration
       t.string :name
       t.integer :sound_threshold
       t.string :shout_msg
-      t.string :ip_address
+      t.macaddr :mac_address
+      t.inet :ip_address
       t.float :latitude
       t.float :longitude
       t.timestamps null: false
