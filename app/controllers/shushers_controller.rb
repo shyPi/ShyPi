@@ -38,6 +38,8 @@ class ShushersController < ApplicationController
   end
 
   def index
+    return get_by_mac_address if params[:mac_address]
+
     @entire_shushers = Shusher.all
   end
 
@@ -55,5 +57,10 @@ class ShushersController < ApplicationController
 
     def shusher_params
       params.require(:shusher).permit(:name, :sound_threshold, :shout_msg)
+    end
+
+    def get_by_mac_address
+      @shusher = Shusher.find_by_mac_address(params[:mac_address])
+      render json: @shusher.to_json
     end
 end
