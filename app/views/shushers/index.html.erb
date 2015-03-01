@@ -1,9 +1,19 @@
 <h1>List all of your shusher profiles </h1>
 
-<div class="well">
-  <ul>
+<div class="row">
+
     <% @entire_shushers.each do |s| %>
-      <li><%= link_to s.name, s %></li>
+      <div class="col-sm-4 col-md-4">
+        <div class="well">
+          <h2><%= link_to s.name, s %></h2>
+          <ul>
+            <li><%= s.sound_threshold %></li>
+            <li><%= s.shout_msg %></li>
+            <li><%= s.mac_address %></li>
+            <li><%= s.user.first_name %> <%= s.user.last_name %></li>
+          </ul>
+        </div>
+      </div>
     <% end %>
-  </ul>
+
 </div>
