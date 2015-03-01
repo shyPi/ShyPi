@@ -6,7 +6,8 @@ class Shusher < ActiveRecord::Base
                    length: {minimum: 5, maximum: 30}
   validates :mac_address, presence: true
 
-  DECAY = 0.20 #this is the decay for Shusher's loudness points calculation
+  DECAY = 0.20 # decay for Shusher's loudness points calculation
+  POLL_INTERVAL = 60 #frequence Shusher polls the web server
 
   attr_accessor :address
   geocoded_by :ip_address
@@ -22,6 +23,10 @@ class Shusher < ActiveRecord::Base
 
   def decay
     DECAY
+  end
+
+  def poll_interval
+    POLL_INTERVAL
   end
 
 end

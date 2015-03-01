@@ -39,8 +39,9 @@ class ShushersController < ApplicationController
 
   def index
     return get_by_mac_address if params[:mac_address]
-
-    @entire_shushers = Shusher.all
+    
+    # user can only view their own shushers' profiles
+    @entire_shushers = current_user.shushers #Shusher.all
   end
 
   def destroy
@@ -61,6 +62,7 @@ class ShushersController < ApplicationController
 
     def get_by_mac_address
       @shusher = Shusher.find_by_mac_address(params[:mac_address])
-      render json: @shusher.to_json
+      #render json: @shusher.to_json
+      render "shushers/show.json.jbuilder"
     end
 end
