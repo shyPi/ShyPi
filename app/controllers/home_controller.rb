@@ -4,7 +4,7 @@ class HomeController < ApplicationController
     #render home/index.html.erb
   end
 
-  def new #this is really the about page
+  def about
     #render home/about.html.erb
   end
 end

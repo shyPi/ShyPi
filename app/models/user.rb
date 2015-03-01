@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
          :omniauthable,
          omniauth_providers: [:twitter, :facebook, :google_oauth2, :github]
 
+  validates :first_name, :last_name, :email, presence: true
+
   has_many :shushers, dependent: :nullify
 
   serialize :omniauth_raw_data, Hash
@@ -17,6 +19,13 @@ class User < ActiveRecord::Base
   def password_required?
     #provider.nil?   #if it is via a provider, don't have to register a password.
     false
+  end
+
+  before_save :cap_nam
+
+  def cap_names
+    self.first_name.capitalize!
+    self.last_name.capitalize!
   end
 
   def self.find_or_create_from_twitter(omniauth_data)

@@ -13,8 +13,10 @@ class ShushersController < ApplicationController
     #raise request.env["omniauth.auth"].inspect
 
     @shusher = Shusher.new shusher_params
+    @shusher.user = current_user
+
     if @shusher.save
-      redirect_to @shusher, notice: "Shusher created successfully."
+      redirect_to shushers_path, notice: "Shusher created successfully."
     else
       render :new
     end
@@ -27,7 +29,7 @@ class ShushersController < ApplicationController
   def update
     #find_shusher
     if @shusher.update shusher_params
-      redirect_to @shusher, notice: "Shusher updated successfully."
+      redirect_to shushers_path, notice: "Shusher updated successfully."
     else
       render :edit
     end
@@ -57,7 +59,7 @@ class ShushersController < ApplicationController
     end
 
     def shusher_params
-      params.require(:shusher).permit(:name, :sound_threshold, :shout_msg)
+      params.require(:shusher).permit(:name, :sound_threshold, :shout_msg, :mac_address)
     end
 
     def get_by_mac_address

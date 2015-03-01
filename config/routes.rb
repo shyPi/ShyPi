@@ -8,8 +8,12 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   
-  resources :home, only: [:index, :new]
+  resources :home, only: [:index, :about]
   resources :shushers #all resources should be plural
+
+
+  get "/about"  =>  "home#about"
+
   root "home#index"
 
   # You can have the root of your site routed with "root"
