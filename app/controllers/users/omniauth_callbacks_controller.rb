@@ -22,4 +22,26 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end   
   end
 
+  def google_oauth2
+    omniauth_data = request.env["omniauth.auth"].to_hash
+    user = User.find_or_create_from_google_oauth2(omniauth_data)
+    if user
+      sign_in user
+      redirect_to root_path, notice: "Welcome via google_oauth2 #{user.first_name}!"
+    else
+      redirect_to root_path, alert: "Sorry didn't sign in with Google_oauth2! contact us if problem persists."
+    end   
+  end
+
+  def github
+    omniauth_data = request.env["omniauth.auth"].to_hash
+    user = User.find_or_create_from_github(omniauth_data)
+    if user
+      sign_in user
+      redirect_to root_path, notice: "Welcome via Github #{user.first_name}!"
+    else
+      redirect_to root_path, alert: "Sorry didn't sign in with Github! contact us if problem persists."
+    end   
+  end
+
 end
