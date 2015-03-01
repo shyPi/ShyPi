@@ -21,7 +21,7 @@ namespace :fake_shusher do
     base = Shusher.last.name[-1].to_i #grab the last n in shusher name
     puts base
     args[:arg2].to_i.times do |n|
-      Shusher.create!(name: "s#{n+1+base}",
+      Shusher.create!(name: "shusher#{n+1+base}",
                      sound_threshold: 5,
                      shout_msg: "Hush #{n+1+base} everyone!",
                      mac_address: Faker::Internet.mac_address,
