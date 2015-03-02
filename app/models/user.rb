@@ -21,11 +21,11 @@ class User < ActiveRecord::Base
     false
   end
 
-  before_save :cap_nam
+  before_save :cap_names
 
   def cap_names
-    self.first_name.capitalize!
-    self.last_name.capitalize!
+    self.first_name.capitalize! if first_name
+    self.last_name.capitalize! if last_name
   end
 
   def self.find_or_create_from_twitter(omniauth_data)

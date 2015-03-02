@@ -1,19 +1,21 @@
-<h1>List of your shusher profiles </h1>
-<% if @entire_shushers == nil %>
-  You don't have any Shusher profiles active. 
+<h1>List of <%=current_user.first_name %>'s Shusher profiles </h1>
+<% if @all_user_shushers == nil %>
+  You don't have any Shusher profiles, please create a new one. 
 <% end %>
-<%= button_to "Add a new Shusher profile", class: "btn btn-primary btn-lg" %> 
-<hr>
 
 
-<div id="new_shusher_form">
-  <%= render "form" %>
+<%= link_to "Create a new Shusher profile", new_shusher_path, class: "btn btn-primary btn-lg", remote: true %> 
+
+
+
+<div id="shusher-form" style="display:none">
+  <%#= render "form" %>
 </div>
-<hr>
 
-<div class="row">
 
-    <% @entire_shushers.each do |s| %>
+<div class="row shusher-index">
+
+    <% @all_user_shushers.each do |s| %>
       <div class="col-sm-4 col-md-4">
         <div class="well">
           <h2><%= link_to s.name, s %></h2>
@@ -25,9 +27,8 @@
 
             <!-- 'cancancan' restriction at Viewer level -->
             <% if can? :manage, s %>
-              <%= link_to "Edit Shusher", edit_shusher_path(s), class: "btn btn-info btn-md" %>
-              <%= link_to "Delete Shusher",  shusher_path(s), 
-                method: :delete, data: {confirm: "Delete this Shusher model?"}, class: "btn btn-danger btn-md" %>
+              <%= link_to "Edit Shusher", edit_shusher_path(s), class: "btn btn-info btn-md", remote: true %>
+              <%= link_to "Delete Shusher",  shusher_path(s), class: "btn btn-danger btn-md", method: :delete, data: {confirm: "Delete this Shusher model?"}, remote: true %>
             <% end %>
           </ul>
         </div>

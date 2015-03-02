@@ -10,10 +10,10 @@
 <% @shusher = Shusher.new unless @shusher %>
 <%= simple_form_for @shusher, html: { class: 'form-horizontal' } do |f| %>
   <%= f.input :name, label: "Shusher name" %>
-  <%= f.input :sound_threshold, label: "How loud (Sound threshold)" %>
+  <%= f.input :sound_threshold, label: "How loud (Sound threshold)", input_html: {min: '0', step: 'any', max: '100'} %> 
   <%= f.input :shout_msg, label: "Shout msg?" %>
   <%= f.input :mac_address, as: :string, label: "Devise Mac Address" %>
   <%#= f.input :image %>  <!-- carrierwave attachment -->
 
-  <%= f.button :submit, class: "btn btn-primary btn-lg" %>
+  <%= f.button :submit, class: "btn-lg btn-primary" %>
 <% end %>

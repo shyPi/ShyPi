@@ -12,9 +12,9 @@
 
         <!-- 'cancancan' restriction at Viewer level -->
         <% if can? :manage, @shusher %>
-          <%= link_to "Edit Shusher", edit_shusher_path(@shusher), class: "btn btn-info btn-md" %>
+          <%= link_to "Edit Shusher", edit_shusher_path(@shusher), class: "btn btn-info btn-md", remote: true %>
           <%= link_to "Delete Shusher",  shusher_path(@shusher), 
-            method: :delete, data: {confirm: "Delete this Shusher model?"}, class: "btn btn-danger btn-md" %>
+            method: :delete, data: {confirm: "Delete this Shusher model?"}, class: "btn btn-danger btn-md", remote:true %>
         <% end %>
       </ul>
     </div>
