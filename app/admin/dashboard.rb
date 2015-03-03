@@ -30,4 +30,9 @@ ActiveAdmin.register_page "Dashboard" do
     #   end
     # end
   end # content
+
+  sidebar :help do
+    "Need help? Email us at help@example.com"
+  end
+  
 end
