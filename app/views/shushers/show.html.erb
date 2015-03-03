@@ -9,13 +9,14 @@
         <li>ip_address: <%= @shusher.ip_address %></li>
         <li>mac_address: <%= @shusher.mac_address %></li>
         <li>belongs to user: <%= @shusher.user.first_name %> <%= @shusher.user.last_name %></li>
+
+        <!-- 'cancancan' restriction at Viewer level -->
+        <% if can? :manage, @shusher %>
+          <%= link_to "Edit Shusher", edit_shusher_path(@shusher), class: "btn btn-info btn-md", remote: true %>
+          <%= link_to "Delete Shusher",  shusher_path(@shusher), 
+            method: :delete, data: {confirm: "Delete this Shusher model?"}, class: "btn btn-danger btn-md", remote:true %>
+        <% end %>
       </ul>
-      <!-- 'cancancan' restriction at Viewer level -->
-      <% if can? :manage, @shusher %>
-        <%= link_to "Edit Shusher", edit_shusher_path(@shusher), class: "btn btn-info btn-md" %>
-        <%= link_to "Delete Shusher",  shusher_path(@shusher), 
-          method: :delete, data: {confirm: "Delete this Shusher model?"}, class: "btn btn-danger btn-md" %>
-      <% end %>
     </div>
   </div>
   <div class="col-sm-6 col-md-6">

@@ -34,6 +34,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem "thin" #use Thin web server
+
 gem "rspec-rails"
 gem "bootstrap-sass"
 #gem 'sass-rails'  #already included, see above
