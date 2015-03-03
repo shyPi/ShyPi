@@ -16,7 +16,7 @@
     <%= f.input :mac_address, as: :string, label: "Devise Mac Address" %>
     <%#= f.input :image %>  <!-- carrierwave attachment -->
 
-    <%= f.button :submit, class: "btn btn-primary btn-md" %>
+    <%= f.button :submit, class: "btn btn-primary btn-md", html: "display:inline" %>
     <!-- move the Modal 'close' button here into the form to make it display inline -->
     <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Close</button>
   <% end %>
