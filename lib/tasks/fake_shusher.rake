@@ -23,10 +23,11 @@ namespace :fake_shusher do
     args[:arg2].to_i.times do |n|
       Shusher.create!(name: "shusher#{n+1+base}",
                      sound_threshold: 5,
-                     shout_msg: "Hush #{n+1+base} everyone!",
+                     #shout_msg: "Hush #{n+1+base} everyone!",
                      mac_address: Faker::Internet.mac_address,
                      ip_address: Faker::Internet.ip_v4_address,
-                     user: User.all.sample )
+                     user: User.all.sample,
+                     shout: Shout.all.sample )
     end
   end
 end
