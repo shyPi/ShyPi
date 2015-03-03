@@ -5,3 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+[ ["dwarf-laugh", "Dwarf Laugh"], 
+  ["net", "Net"], 
+  ["spear", "Spear"], 
+  ["water-blast", "Water Blast"],  
+  ["voice-shush", "Voice Shush"] ].each do |shout|
+
+    Shout.create(filename: shout[0], shout_msg: shout[1])
+end

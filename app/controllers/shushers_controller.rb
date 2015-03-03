@@ -15,6 +15,7 @@ class ShushersController < ApplicationController
 
     @shusher = Shusher.new shusher_params
     @shusher.user = current_user
+    @shusher.shout = Shout.find(shusher_params[:shout_id])
 
     if @shusher.save
       redirect_to shushers_path, notice: "Shusher created successfully."
@@ -65,7 +66,7 @@ class ShushersController < ApplicationController
     end
 
     def shusher_params
-      params.require(:shusher).permit(:name, :sound_threshold, :shout_msg, :mac_address)
+      params.require(:shusher).permit( :name, :sound_threshold, :mac_address, :shout_id )
     end
 
     def get_by_mac_address

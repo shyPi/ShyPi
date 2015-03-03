@@ -1,4 +1,4 @@
-console.log("HELLO KITTY");
+// console.log("HELLO KITTY");
 
 $(function() {
   var ageInput = $("#ageInput");
@@ -10,6 +10,7 @@ $(function() {
       handle = handle || $(".ui-slider-handle", ageInput);
       ageDisplay.text(ui.value || initialValue)
                 .css(handle.position());
+      $("#shusher_sound_threshold").val(ui.value || initialValue);
   };
 
   ageInput.slider({
