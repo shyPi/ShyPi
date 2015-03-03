@@ -15,7 +15,7 @@ class ShushersController < ApplicationController
 
     @shusher = Shusher.new shusher_params
     @shusher.user = current_user
-    @shusher.shout = Shout.find(params[:shout_id])
+    @shusher.shout = Shout.find(shusher_params[:shout_id])
 
     if @shusher.save
       redirect_to shushers_path, notice: "Shusher created successfully."

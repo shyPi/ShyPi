@@ -11,20 +11,52 @@
   <% @shusher = Shusher.new unless @shusher %>
   <%= simple_form_for @shusher, html: { class: 'form-horizontal' } do |f| %>
     <%= f.input :name, label: "Shusher name" %>
-    <%= f.input :sound_threshold, label: "How loud (Sound threshold)", input_html: {min: '0', step: 'any', max: '100'} %> 
-    <%= f.input :shout_msg, label: "Shout msg?" %>
-    <%= f.input :mac_address, as: :string, label: "Devise Mac Address" %>
+    <%#= f.input :sound_threshold, label: "How loud (Sound threshold)", input_html: {min: '0', step: 'any', max: '100'} %>
+
+    <%= f.label "Sound Threshold" %>
+    <%= f.input :sound_threshold, :as => :hidden %>
+    <div id="ageInput">
+        <div></div>
+    </div>
+
+
+
+    <%#WXU???= f.input :shout_msg, label: "Shout msg?" %>
+    <%= f.input :mac_address, as: :string, label: "Shusher device MAC dddress" %>
     <%#= f.input :image %>  <!-- carrierwave attachment -->
+    <%#= f.select "shusher", "shout_id", Shout.all.collect {|s| [ s.shout_msg, s.id ] }, { include_blank: false } %>
+    <%= f.label "Shout sound" %>
+    <%= f.collection_select :shout_id, Shout.all, :id, :shout_msg %>
+
+    <p></p>
 
     <%= f.button :submit, class: "btn btn-primary btn-md", html: "display:inline" %>
     <!-- move the Modal 'close' button here into the form to make it display inline -->
     <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Close</button>
 
 
+<script>
+//   var ageInput = $("#ageInput");
+//   var ageDisplay = $("#ageInput > div");
+//   var initialValue = 80;
+//   var handle = null;
 
-    <div id="ageInput">
-        <div></div>
-    </div>
+//   var updateSliderValue = function (event, ui) {
+//       handle = handle || $(".ui-slider-handle", ageInput);
+//       ageDisplay.text(ui.value || initialValue)
+//                 .css(handle.position());
+//       $("#shusher_sound_threshold").val(ui.value);
+//   };
+
+//   ageInput.slider({
+//       min: 1, max: 100,
+//       slide: updateSliderValue,
+//       create: updateSliderValue,
+//       value: initialValue
+//   });
+
+</script>
+
 
 <!--     Test slider value : <br>
     <div class="slider"></div>
