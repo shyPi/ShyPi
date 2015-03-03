@@ -1,19 +1,23 @@
-<% if @shusher && @shusher.errors.any? %>
-  <ul>
-    <% @shusher.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
-    <% end %>
-  </ul>
-<% end %>
+<div class="shusher-form">
+  <% if @shusher && @shusher.errors.any? %>
+    <ul>
+      <% @shusher.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
 
-<%#= form_for @shusher, multipart: true  do |f|    <--- multipart is for the image attachment upload  %>
-<% @shusher = Shusher.new unless @shusher %>
-<%= simple_form_for @shusher, html: { class: 'form-horizontal' } do |f| %>
-  <%= f.input :name, label: "Shusher name" %>
-  <%= f.input :sound_threshold, label: "How loud (Sound threshold)", input_html: {min: '0', step: 'any', max: '100'} %> 
-  <%= f.input :shout_msg, label: "Shout msg?" %>
-  <%= f.input :mac_address, as: :string, label: "Devise Mac Address" %>
-  <%#= f.input :image %>  <!-- carrierwave attachment -->
+  <%#= form_for @shusher, multipart: true  do |f|    <--- multipart is for the image attachment upload  %>
+  <% @shusher = Shusher.new unless @shusher %>
+  <%= simple_form_for @shusher, html: { class: 'form-horizontal' } do |f| %>
+    <%= f.input :name, label: "Shusher name" %>
+    <%= f.input :sound_threshold, label: "How loud (Sound threshold)", input_html: {min: '0', step: 'any', max: '100'} %> 
+    <%= f.input :shout_msg, label: "Shout msg?" %>
+    <%= f.input :mac_address, as: :string, label: "Devise Mac Address" %>
+    <%#= f.input :image %>  <!-- carrierwave attachment -->
 
-  <%= f.button :submit, class: "btn-lg btn-primary" %>
-<% end %>
+    <%= f.button :submit, class: "btn btn-primary btn-md" %>
+    <!-- move the Modal 'close' button here into the form to make it display inline -->
+    <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Close</button>
+  <% end %>
+</div>
