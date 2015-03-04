@@ -1,7 +1,16 @@
 class ShushersController < ApplicationController
-  before_action :authenticate_user!#, except: [:index, :show]
+  before_action :authenticate_user!, except: [:device_config]#, except: [:index, :show]
   before_action :find_shusher, only: [ :edit, :update, :show, :destroy ]
+  layout :determine_layout
   respond_to :html, :js
+
+  def determine_layout
+    if ['new', 'edit'].include?(params[:action])
+      false
+    else
+      'application'
+    end
+  end
 
   def new
     #render nothing:true
@@ -25,30 +34,26 @@ class ShushersController < ApplicationController
   end
 
   def edit
-    #find_shusher
+    # find_shusher
   end
 
   def update
     #find_shusher
-    if @shusher.update shusher_params
-      redirect_to shusher_path(@shusher), notice: "Shusher updated successfully."
-    else
-      render :edit
-    end
+    @shusher.update shusher_params
+    redirect_to  shushers_path, notice: "Shusher updated successfully."
   end
 
-  def show
-    #find_shusher, goes to show.html.erb file
-  end
+  # def show
+  #   #find_shusher, goes to show.html.erb file
+  # end
 
-  def index
-    return get_by_mac_address if params[:mac_address]
-    
+  def index 
     # user can only view their own shushers' profiles
     @all_user_shushers = current_user.shushers #Shusher.all
   end
 
   def destroy
+    @shusher_id = @shusher.id
     #find_shusher
     @shusher.destroy
     respond_to do |format|
@@ -57,6 +62,16 @@ class ShushersController < ApplicationController
       #in JS, do not redirect_to, only use    window.location.reload();
       format.html { redirect_to shushers_path, notice: "Shusher deleted successfully." }
     end
+  end
+
+  def device_config
+    #render text: params
+
+    @shusher = Shusher.find_by_mac_address(params[:mac_address])
+    #render json: @shusher.to_json
+    
+    render "shushers/device_config.json.jbuilder"
+    #render shushers_device_config_path
   end
 
   private
@@ -69,9 +84,4 @@ class ShushersController < ApplicationController
       params.require(:shusher).permit( :name, :sound_threshold, :mac_address, :shout_id )
     end
 
-    def get_by_mac_address
-      @shusher = Shusher.find_by_mac_address(params[:mac_address])
-      #render json: @shusher.to_json
-      render "shushers/show.json.jbuilder"
-    end
 end
