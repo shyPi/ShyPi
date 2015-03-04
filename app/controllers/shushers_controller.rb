@@ -1,7 +1,16 @@
 class ShushersController < ApplicationController
   before_action :authenticate_user!, except: [:device_config]#, except: [:index, :show]
   before_action :find_shusher, only: [ :edit, :update, :show, :destroy ]
+  layout :determine_layout
   respond_to :html, :js
+
+  def determine_layout
+    if ['new', 'edit'].include?(params[:action])
+      false
+    else
+      'application'
+    end
+  end
 
   def new
     #render nothing:true
@@ -44,6 +53,7 @@ class ShushersController < ApplicationController
   end
 
   def destroy
+    @shusher_id = @shusher.id
     #find_shusher
     @shusher.destroy
     respond_to do |format|
