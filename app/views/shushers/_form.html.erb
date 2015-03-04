@@ -13,13 +13,19 @@
     <%= f.input :name, label: "Shusher name" %>
     <%#= f.input :sound_threshold, label: "How loud (Sound threshold)", input_html: {min: '0', step: 'any', max: '100'} %>
 
-    <%= f.label "Sound Threshold" %>
-    <%= f.input :sound_threshold, :as => :hidden %>
-    <div id="ageInput">
-        <div></div>
-    </div>
-
-
+    <% if @shusher.persisted? %>
+      <%= f.label "Sound Threshold" %>
+      <%= f.input :sound_threshold, :as => :hidden, class: "sound_threshold_#{@shusher.id}" %>
+      <div id="sound-threshold" class="sound-threshold">
+          <div></div>
+      </div>
+    <% else %>
+      <%= f.label "Sound Threshold" %>
+      <%= f.input :sound_threshold, :as => :hidden %>
+      <div id="sound-threshold" class="sound-threshold">
+          <div></div>
+      </div>
+    <% end %>
 
     <%#WXU???= f.input :shout_msg, label: "Shout msg?" %>
     <%= f.input :mac_address, as: :string, label: "Shusher device MAC dddress" %>
@@ -36,25 +42,24 @@
 
 
 <script>
-//   var ageInput = $("#ageInput");
-//   var ageDisplay = $("#ageInput > div");
+//   var soundThreshold = $("#sound-threshold");
+//   var soundDisplay = $("#soundThreshold > div");
 //   var initialValue = 80;
 //   var handle = null;
 
 //   var updateSliderValue = function (event, ui) {
-//       handle = handle || $(".ui-slider-handle", ageInput);
-//       ageDisplay.text(ui.value || initialValue)
+//       handle = handle || $(".ui-slider-handle", soundThreshold);
+//       soundDisplay.text(ui.value || initialValue)
 //                 .css(handle.position());
 //       $("#shusher_sound_threshold").val(ui.value);
 //   };
 
-//   ageInput.slider({
+//   soundThreshold.slider({
 //       min: 1, max: 100,
 //       slide: updateSliderValue,
 //       create: updateSliderValue,
 //       value: initialValue
 //   });
-
 </script>
 
 

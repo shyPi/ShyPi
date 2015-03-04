@@ -1,2 +1,3 @@
 $('#shusher-form').html("<%= j (render 'form') %>");
 $('#shusher-form').slideDown(350);
+attachSlider(".sound-threshold", ".sound_threshold_" + '<%= @shusher.id %>');

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get "/shushers/device_config" => "shushers#device_config"
 
   resources :home, only: [:index, :about]
-  resources :shushers #all resources should be plural
+  resources :shushers, only: [:create, :update, :index, :destroy] #all resources should be plural
 
   root "home#index"
 

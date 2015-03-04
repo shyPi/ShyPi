@@ -3,10 +3,10 @@ class ShushersController < ApplicationController
   before_action :find_shusher, only: [ :edit, :update, :show, :destroy ]
   respond_to :html, :js
 
-  def new
-    #render nothing:true
-    @shusher = Shusher.new
-  end
+  # def new
+  #   #render nothing:true
+  #   @shusher = Shusher.new
+  # end
 
   def create
     #raise params.inspect
@@ -24,9 +24,9 @@ class ShushersController < ApplicationController
     end
   end
 
-  def edit
-    #find_shusher
-  end
+  # def edit
+  #   #find_shusher
+  # end
 
   def update
     #find_shusher
@@ -37,9 +37,9 @@ class ShushersController < ApplicationController
     end
   end
 
-  def show
-    #find_shusher, goes to show.html.erb file
-  end
+  # def show
+  #   #find_shusher, goes to show.html.erb file
+  # end
 
   def index 
     # user can only view their own shushers' profiles
