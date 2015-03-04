@@ -2,11 +2,13 @@ class Shusher < ActiveRecord::Base
   belongs_to :user
   belongs_to :shout
 
-  validates :name, presence: true, 
-                   uniqueness: true, 
+  validates :name, presence: true, uniqueness: true, 
                    length: {minimum: 5, maximum: 30}
-  validates :sound_threshold, presence: true, numericality: { greater_than_or_eqaul_to: 0, less_than_or_equal_to: 100 }
-  validates :mac_address, presence: true
+  validates :sound_threshold, presence: true, 
+                              numericality: { 
+                                greater_than_or_eqaul_to: 1, 
+                                less_than_or_equal_to: 100 }
+  validates :mac_address, presence: true, uniqueness: true
 
 
   DECAY = 0.20 # decay for Shusher's loudness points calculation
