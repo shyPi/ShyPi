@@ -3,10 +3,10 @@ class ShushersController < ApplicationController
   before_action :find_shusher, only: [ :edit, :update, :show, :destroy ]
   respond_to :html, :js
 
-  # def new
-  #   #render nothing:true
-  #   @shusher = Shusher.new
-  # end
+  def new
+    #render nothing:true
+    @shusher = Shusher.new
+  end
 
   def create
     #raise params.inspect
@@ -24,17 +24,14 @@ class ShushersController < ApplicationController
     end
   end
 
-  # def edit
-  #   #find_shusher
-  # end
+  def edit
+    # find_shusher
+  end
 
   def update
     #find_shusher
-    if @shusher.update shusher_params
-      redirect_to shusher_path(@shusher), notice: "Shusher updated successfully."
-    else
-      render :edit
-    end
+    @shusher.update shusher_params
+    redirect_to  shushers_path, notice: "Shusher updated successfully."
   end
 
   # def show

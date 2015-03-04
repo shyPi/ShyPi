@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   get "/about"  =>  "home#about"
   get "/shushers/device_config" => "shushers#device_config"
 
-  resources :home, only: [:index, :about]
-  resources :shushers, only: [:create, :update, :index, :destroy] #all resources should be plural
+  resources :home, only: [:index]
+  resources :shushers, only: [:new, :edit, :create, :update, :index, :destroy] #all resources should be plural
 
   root "home#index"
 
