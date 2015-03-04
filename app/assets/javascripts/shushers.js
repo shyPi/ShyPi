@@ -3,7 +3,7 @@
 function attachSlider(containerEl, valueEl) {
   var soundThreshold = $(containerEl);
   var soundDisplay = $(containerEl + " > div");
-  var initialValue = 50; // set default value to "50", out of 1-100
+  var initialValue = $(valueEl).val() || 50; // set default value to "50", out of 1-100
   var handle = null;
 
   var updateSliderValue = function (event, ui) {
