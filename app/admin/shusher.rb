@@ -1,4 +1,10 @@
 ActiveAdmin.register Shusher do
+  controller do
+    def permitted_params
+      params.permit shusher: [:name, :sound_threshold, :shout_id, :mac_address, :user_id]
+    end
+  end
+
   index do
     selectable_column #this provides the checkbox for each shusher
     #id_column
@@ -27,7 +33,7 @@ ActiveAdmin.register Shusher do
       f.input :name
       f.input :sound_threshold
       f.input :shout_id
-      f.input :mac_address
+      f.input :mac_address, as: :string
       f.input :user_id
     end
     f.actions
