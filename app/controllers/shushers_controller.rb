@@ -1,5 +1,5 @@
 class ShushersController < ApplicationController
-  before_action :authenticate_user!#, except: [:index, :show]
+  before_action :authenticate_user!, except: [:device_config]#, except: [:index, :show]
   before_action :find_shusher, only: [ :edit, :update, :show, :destroy ]
   respond_to :html, :js
 
@@ -41,9 +41,7 @@ class ShushersController < ApplicationController
     #find_shusher, goes to show.html.erb file
   end
 
-  def index
-    return get_by_mac_address if params[:mac_address]
-    
+  def index 
     # user can only view their own shushers' profiles
     @all_user_shushers = current_user.shushers #Shusher.all
   end
@@ -59,6 +57,16 @@ class ShushersController < ApplicationController
     end
   end
 
+  def device_config
+    #render text: params
+
+    @shusher = Shusher.find_by_mac_address(params[:mac_address])
+    #render json: @shusher.to_json
+    
+    render "shushers/device_config.json.jbuilder"
+    #render shushers_device_config_path
+  end
+
   private
 
     def find_shusher
@@ -69,9 +77,4 @@ class ShushersController < ApplicationController
       params.require(:shusher).permit( :name, :sound_threshold, :mac_address, :shout_id )
     end
 
-    def get_by_mac_address
-      @shusher = Shusher.find_by_mac_address(params[:mac_address])
-      #render json: @shusher.to_json
-      render "shushers/show.json.jbuilder"
-    end
 end
