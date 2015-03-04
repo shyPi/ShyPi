@@ -13,6 +13,8 @@ class Shusher < ActiveRecord::Base
 
   DECAY = 0.20 # 20%/3sec decay for Shusher's loudness points calculation
   POLL_INTERVAL = 60 #frequence Shusher polls the web server
+  MIN_THRESHOLD = 40
+  MAX_THRESHOLD = 120
 
   def decay
     DECAY
@@ -22,6 +24,13 @@ class Shusher < ActiveRecord::Base
     POLL_INTERVAL
   end
 
+  def min_threshold
+    MIN_THRESHOLD
+  end
+
+  def max_threshold
+    MAX_THRESHOLD
+  end
 
   attr_accessor :address
   geocoded_by :ip_address
