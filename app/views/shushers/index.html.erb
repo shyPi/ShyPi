@@ -40,16 +40,16 @@
         <div class="well">
           <h2><%= link_to s.name, s %></h2>
           <ul>
-            <li>
+            <li>Sound Threshold:
               <% if s.sound_threshold == -1 %>
                 <strong><em><%= "Disabled" %></em></strong>
               <% else %>
                 <%= s.sound_threshold %>
               <% end %>
             </li>
-            <li><%= s.shout.shout_msg %></li>
-            <li><%= s.mac_address %></li>
-            <li><%= s.user.first_name %> <%= s.user.last_name %></li>
+            <li><strong><em><%= s.shout.shout_msg %></em></strong></li>
+            <li>MAC: <%= s.mac_address %></li>
+            <li>User: <%= s.user.first_name %> <%= s.user.last_name %></li>
 
             <!-- 'cancancan' restriction at Viewer level -->
             <% if can? :manage, s %>

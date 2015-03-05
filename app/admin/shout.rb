@@ -1,4 +1,9 @@
 ActiveAdmin.register Shout do
+
+  #allow ActiveAdmin to permit extra params
+  permit_params :shout_msg, :filename
+
+
   index do
     selectable_column #this provides the checkbox for each shusher
     #id_column

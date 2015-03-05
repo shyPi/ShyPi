@@ -4,11 +4,11 @@
 
     <div class="well">
       <ul>
-        <li>sound_threshold: <%= @shusher.sound_threshold %></li>
-        <li>shout_msg: <%= @shusher.shout.shout_msg %></li>
-        <li>ip_address: <%= @shusher.ip_address %></li>
-        <li>mac_address: <%= @shusher.mac_address %></li>
-        <li>belongs to user: <%= @shusher.user.first_name %> <%= @shusher.user.last_name %></li>
+        <li>Sound Threshold: <%= @shusher.sound_threshold %></li>
+        <li><strong><em><%= @shusher.shout.shout_msg %></em></strong></li>
+        <li>IP: <%= @shusher.ip_address %></li>
+        <li>MAC: <%= @shusher.mac_address %></li>
+        <li>User: <%= @shusher.user.first_name %> <%= @shusher.user.last_name %></li>
 
         <!-- 'cancancan' restriction at Viewer level -->
         <%# if can? :manage, @shusher %>
