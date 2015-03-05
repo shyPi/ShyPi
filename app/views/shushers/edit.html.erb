@@ -5,27 +5,30 @@
 
 <script>
   var lastVal;
-  // need to fix the slider bar being disabled if the sound_threshold is -1.
-  attachSlider(".sound-threshold", "#shusher_sound_threshold");
-  
 
   $('.disable-button').click(function() {
 
-    console.log("pretty cat.");
-    
+    var mySlider = $('#shusher_sound_threshold');
+    var sliderValue = $("#slider-value");
+
     if ($(this).text() === "Disable") {
       $(this).text("Enable");
       $(this).removeClass("btn-danger");
       $(this).addClass("btn-primary");
-      mySlider.slider( "option", "disabled", true );
-      lastVal = $('#shusher_sound_threshold').val();
-      $('#shusher_sound_threshold').val(-1);
+      mySlider.slider("disable");
+      lastVal = mySlider.slider("getValue");
+      mySlider.val(-1);
+      sliderValue.text('');
+      mySlider.slider("disable");
     } else {
       $(this).text("Disable");
       $(this).removeClass("btn-primary");
       $(this).addClass("btn-danger");
-      mySlider.slider( "option", "disabled", false );
-      $('#shusher_sound_threshold').val(lastVal);
+      mySlider.slider("enable");
+      mySlider.slider("setValue", lastVal);
+      if (lastVal > 0) {
+        sliderValue.text(lastVal + '%');
+      }
     }
 
   });   

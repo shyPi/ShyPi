@@ -43,6 +43,7 @@ gem "bootstrap-sass"
 #gem 'sass-rails'  #already included, see above
 gem "simple_form"
 gem "quiet_assets"
+gem 'bootstrap-slider-rails'
 
 gem "cancancan"   # for user authorization
 gem "cocoon" # for nested attributes

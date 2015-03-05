@@ -9,42 +9,52 @@
 
   <%#= form_for @shusher, multipart: true  do |f|    <--- multipart is for the image attachment upload  %>
   <% @shusher = Shusher.new unless @shusher %>
-  <%= simple_form_for @shusher, html: { class: 'form-horizontal' } do |f| %>
+  <%= simple_form_for @shusher, html: { class: 'form-horizontal' },
+                                wrapper: :horizontal_form do |f| %>
     <%= f.input :name, label: "Shusher name" %>
     <%#= f.input :sound_threshold, label: "How loud (Sound threshold)", input_html: {min: '0', step: 'any', max: '100'} %>
 
 
-    <%= f.label "Sound Threshold" %>
+    <div class="form-group">
+      <%= f.label "Loudness", class: "control-label col-sm-3" %>
+      <div class="col-sm-1">
+        <span id="slider-value">
+          <%= f.object.sound_threshold || 50 %>%
+        </span>
+      </div>
+
+      <div class="col-sm-8">
+           <%= f.text_field :sound_threshold, id: 'shusher_sound_threshold', type: 'text', data:
+               {'slider-id' => 'slider', 'slider-min' => '0', 'slider-max' => '100',
+                'slider-step' => '1', 'slider-value' => f.object.sound_threshold || 50} %>
+      </div>
+    </div>
+
     <%#= f.input "disable", as: :check_boxes %>
     <%#= f.input :disable, :label => "disable" do %>
       <%#= check_box_tag :disable %>
     <%# end %>
 
-    <% if @shusher && (@shusher.sound_threshold == -1) %>
-      <button class="disable-button btn btn-primary btn-sm pull-right animated rubberBand" type="button">Enable</button>
-    <% else %>
-      <button class="disable-button btn btn-danger btn-sm pull-right animated rubberBand" type="button">Disable</button>
-    <% end %>
-
-
-    <%= f.hidden_field :sound_threshold, value: @shusher.sound_threshold %>
-    <div id="sound-threshold" class="sound-threshold">
-        <div></div>
-    </div>
-
-    <%= f.input :mac_address, as: :string, label: "Shusher MAC address" %>
+    <%= f.input :mac_address, as: :string, label: "MAC address" %>
     <%#= f.input :image %>  <!-- carrierwave attachment -->
     <%#= f.select "shusher", "shout_id", Shout.all.collect {|s| [ s.shout_msg, s.id ] }, { include_blank: false } %>
-    <%= f.label "Shout sound" %>
-    <%= f.collection_select :shout_id, Shout.all, :id, :shout_msg %>
+    <div class="form-group">
+      <%= f.label "Shout sound", class: "control-label col-sm-3" %>
+      <div class="col-sm-9">
+        <%= f.collection_select :shout_id, Shout.all, :id, :shout_msg, {}, {:class => "form-control"} %>
+      </div>
+    </div>
 
     <p></p>
 
     <%= f.button :submit, class: "btn btn-primary btn-md", html: "display:inline" %>
     <!-- move the Modal 'close' button here into the form to make it display inline -->
     <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Close</button>
-
-
+    <% if @shusher && (@shusher.sound_threshold == -1) %>
+      <button class="disable-button btn btn-primary btn-sm pull-right animated rubberBand" type="button">Enable</button>
+    <% else %>
+      <button class="disable-button btn btn-danger btn-sm pull-right animated rubberBand" type="button">Disable</button>
+    <% end %>
 <script>
 //   var soundThreshold = $("#sound-threshold");
 //   var soundDisplay = $("#soundThreshold > div");

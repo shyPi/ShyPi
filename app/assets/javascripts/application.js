@@ -16,6 +16,7 @@
 //= require turbolinks
 //= require underscore
 //= require gmaps/google
-//= require shushers
 //= require bootstrap-sprockets
+//= require bootstrap-slider
+//= require shushers
 //= require_tree .
