@@ -4,5 +4,28 @@
 <%= render "form" %>
 
 <script>
-   attachSlider(".sound-threshold", "#shusher_sound_threshold");
+  var lastVal;
+
+  attachSlider(".sound-threshold", "#shusher_sound_threshold");
+
+  $('.disable-button').click(function() {
+
+    console.log("pretty cat.");
+    
+    if ($(this).text() === "Disable") {
+      $(this).text("Enable");
+      $(this).removeClass("btn-danger");
+      $(this).addClass("btn-primary");
+      mySlider.slider( "option", "disabled", true );
+      lastVal = $('#shusher_sound_threshold').val();
+      $('#shusher_sound_threshold').val(-1);
+    } else {
+      $(this).text("Disable");
+      $(this).removeClass("btn-primary");
+      $(this).addClass("btn-danger");
+      mySlider.slider( "option", "disabled", false );
+      $('#shusher_sound_threshold').val(lastVal);
+    }
+
+  });   
 </script>

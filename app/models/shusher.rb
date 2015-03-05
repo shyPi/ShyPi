@@ -32,6 +32,7 @@ class Shusher < ActiveRecord::Base
     MAX_THRESHOLD
   end
 
+
   attr_accessor :address
   geocoded_by :ip_address
   after_validation :geocode,
@@ -44,4 +45,8 @@ class Shusher < ActiveRecord::Base
     Rails.logger.info ">>>>>>>>>>> #{address}" #prints out to Rails console
   end
 
+  attr_accessor :disable
+#   def disable
+# Rails.logger.info "==== ------- ======="
+#   end
 end

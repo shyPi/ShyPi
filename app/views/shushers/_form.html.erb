@@ -15,12 +15,19 @@
 
 
     <%= f.label "Sound Threshold" %>
+    <%#= f.input "disable", as: :check_boxes %>
+    <%#= f.input :disable, :label => "disable" do %>
+      <%#= check_box_tag :disable %>
+    <%# end %>
+
+    <button class="disable-button btn btn-danger btn-sm pull-right   animated rubberBand" type="button">Disable</button>
+
+
     <%= f.hidden_field :sound_threshold, value: @shusher.sound_threshold %>
     <div id="sound-threshold" class="sound-threshold">
         <div></div>
     </div>
 
-    <%#WXU???= f.input :shout_msg, label: "Shout msg?" %>
     <%= f.input :mac_address, as: :string, label: "Shusher MAC address" %>
     <%#= f.input :image %>  <!-- carrierwave attachment -->
     <%#= f.select "shusher", "shout_id", Shout.all.collect {|s| [ s.shout_msg, s.id ] }, { include_blank: false } %>

@@ -24,10 +24,18 @@ body {
 // }
 
 #sound-threshold {
-    margin: 60px 20px 0 20px     
+  margin: 60px 20px 0 20px;
 }
 
 #sound-threshold > div {
-    margin-top:-25px;
-    position: relative;
+  margin-top:-25px;
+  position: relative;
+}
+
+.disable-button {
+
+}
+
+.enable-button {
+
 }
