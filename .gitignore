@@ -23,3 +23,7 @@
 !/log/.keep
 /tmp
 /public/uploads
+
+# Ignore build files
+/device/shusherd/shusherd
+*.o
