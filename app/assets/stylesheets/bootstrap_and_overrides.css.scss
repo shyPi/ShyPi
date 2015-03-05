@@ -2,8 +2,8 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-body {
-//  background: url("sunset.jpg") fixed no-repeat center #1c1c1c ;
+.home-image{
+  background: url("Shush.jpg") fixed no-repeat center #FFFFFF ;
 }
 
 .navbar-right {
@@ -23,11 +23,11 @@ body {
 //   margin: 10px; 
 // }
 
-#sound-threshold {
+.sound-threshold {
   margin: 60px 20px 0 20px;
 }
 
-#sound-threshold > div {
+.sound-threshold > div {
   margin-top:-25px;
   position: relative;
 }
