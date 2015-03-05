@@ -40,12 +40,12 @@ class ShushersController < ApplicationController
   def update
     #find_shusher
     @shusher.update shusher_params
-    redirect_to  shushers_path, notice: "Shusher updated successfully."
+    redirect_to shushers_path, notice: "Shusher updated successfully."
   end
 
-  # def show
-  #   #find_shusher, goes to show.html.erb file
-  # end
+  def show
+    #find_shusher, goes to show.html.erb file
+  end
 
   def index 
     # user can only view their own shushers' profiles
