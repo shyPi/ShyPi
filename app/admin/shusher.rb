@@ -1,7 +1,7 @@
 ActiveAdmin.register Shusher do
   controller do
     def permitted_params
-      params.permit shusher: [:name, :sound_threshold, :shout_id, :mac_address, :user_id]
+      params.permit shusher: [ :name, :sound_threshold,  :mac_address, :ip_address, :user_id, :shout_id ]
     end
   end
 
@@ -14,8 +14,11 @@ ActiveAdmin.register Shusher do
       shusher.shout.shout_msg
     end
     column :mac_address
+    column :ip_address
     column "User name", :user_id, :sortable => :user_id do |shusher|
-      shusher.user.first_name
+      if shusher.user 
+        shusher.user.first_name
+      end
     end
 
     # 'default_actions' is deprecated, use 'actions' instead
@@ -26,6 +29,7 @@ ActiveAdmin.register Shusher do
   filter :sound_threshold
   filter :shout_id
   filter :mac_address
+  filter :ip_address
   filter :user_id
 
   form do |f|
@@ -34,6 +38,7 @@ ActiveAdmin.register Shusher do
       f.input :sound_threshold
       f.input :shout_id
       f.input :mac_address, as: :string
+      f.input :ip_address, as: :string
       f.input :user_id
     end
     f.actions
