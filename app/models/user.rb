@@ -13,7 +13,8 @@ class User < ActiveRecord::Base
   serialize :omniauth_raw_data, Hash
 
   def email_required?
-    provider.nil?
+    #provider.nil?
+    false
   end
 
   def password_required?
