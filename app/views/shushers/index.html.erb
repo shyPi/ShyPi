@@ -33,7 +33,6 @@
 
 
 
-
 <div class="row shusher-index">
 
     <% @all_user_shushers.each do |s| %>
@@ -41,7 +40,13 @@
         <div class="well">
           <h2><%= link_to s.name, s %></h2>
           <ul>
-            <li><%= s.sound_threshold %></li>
+            <li>
+              <% if s.sound_threshold == -1 %>
+                <strong><em><%= "Disabled" %></em></strong>
+              <% else %>
+                <%= s.sound_threshold %>
+              <% end %>
+            </li>
             <li><%= s.shout.shout_msg %></li>
             <li><%= s.mac_address %></li>
             <li><%= s.user.first_name %> <%= s.user.last_name %></li>

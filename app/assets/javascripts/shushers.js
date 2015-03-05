@@ -39,6 +39,20 @@ function attachSlider(containerEl, valueEl) {
 //   })
 // });
 
+// destroy the modal-content every time upon hide, so every show pulls in a new HREF
 $(document).on("hidden.bs.modal", function (e) {
-    $(e.target).removeData("bs.modal").find(".modal-content").empty();
+  $(e.target).removeData("bs.modal").find(".modal-content").empty();
+});
+
+$(document).on("shown.bs.modal", function (e) {
+  // console.log("hello kitty");
+  // $(".disable-button").click( function() {
+  //   $(this).toggleClass("btn-primary");
+  // });
+});
+
+$(function() {
+  // $('.disable-button').click(function() {
+  //   console.log("pretty cat.");
+  // });
 });
