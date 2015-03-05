@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   validates :first_name, :last_name, :email, presence: true
 
-  has_many :shushers, dependent: :nullify
+  has_many :shushers, dependent: :destroy
 
   serialize :omniauth_raw_data, Hash
 
