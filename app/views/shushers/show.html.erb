@@ -4,7 +4,13 @@
 
     <div class="well">
       <ul>
-        <li>Sound Threshold: <%= @shusher.sound_threshold %></li>
+        <li>Sound Threshold:
+            <% if @shusher.sound_threshold == -1 %>
+              <strong><em><%= "Disabled" %></em></strong>
+            <% else %>
+              <%= @shusher.sound_threshold %>
+            <% end %>
+        </li>
         <li><strong><em><%= @shusher.shout.shout_msg %></em></strong></li>
         <li>IP: <%= @shusher.ip_address %></li>
         <li>MAC: <%= @shusher.mac_address %></li>

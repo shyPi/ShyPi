@@ -20,9 +20,27 @@ function attachSlider(containerEl, valueEl) {
       slide: updateSliderValue,
       create: updateSliderValue,
       value: initialValue
-
-      //???WXU hide or disable this here. 
   });
+
+  // //???WXU hide or disable this here.
+  // if (initialValue === -1) {
+  //   mySlider = soundThreshold.slider({
+  //       min: 1, max: 100,
+  //       slide: updateSliderValue,
+  //       create: updateSliderValue,
+  //       value: initialValue,
+  //       disabled: true
+  //   });
+  // } else {
+  //   mySlider = soundThreshold.slider({
+  //       min: 1, max: 100,
+  //       slide: updateSliderValue,
+  //       create: updateSliderValue,
+  //       value: initialValue
+  //   });
+  // }
+
+  // return(mySlider);
 
 };
 
