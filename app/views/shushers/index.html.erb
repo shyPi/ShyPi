@@ -56,7 +56,7 @@
 
               <button type="button" href="<%= edit_shusher_path(s) %>" data-toggle="modal" data-target="#basicModal" class="btn btn-warning btn-sm"><span display="inline">Edit</span></button>
               <%#= link_to "Edit", edit_shusher_path(s), class: "btn btn-primary btn-md", data: {toggle: 'modal', target: '#basicModal'} %>
-              <%= link_to "Delete",  shusher_path(s), class: "btn btn-default btn-sm", method: :delete, data: {confirm: "Delete this Shusher model?"}, remote: true %>
+              <%= link_to "Delete", shusher_path(s), class: "btn btn-default btn-sm", method: :delete, data: {confirm: "Delete this Shusher model?"}, remote: true %>
             <% end %>
           </ul>
         </div>

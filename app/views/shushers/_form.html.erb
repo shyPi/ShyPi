@@ -20,7 +20,11 @@
       <%#= check_box_tag :disable %>
     <%# end %>
 
-    <button class="disable-button btn btn-danger btn-sm pull-right   animated rubberBand" type="button">Disable</button>
+    <% if @shusher && (@shusher.sound_threshold == -1) %>
+      <button class="disable-button btn btn-primary btn-sm pull-right animated rubberBand" type="button">Enable</button>
+    <% else %>
+      <button class="disable-button btn btn-danger btn-sm pull-right animated rubberBand" type="button">Disable</button>
+    <% end %>
 
 
     <%= f.hidden_field :sound_threshold, value: @shusher.sound_threshold %>

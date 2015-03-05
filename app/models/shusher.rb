@@ -6,7 +6,7 @@ class Shusher < ActiveRecord::Base
                    length: {minimum: 5, maximum: 30}
   validates :sound_threshold, presence: true, 
                               numericality: { 
-                                greater_than_or_eqaul_to: 1, 
+                                greater_than_or_eqaul_to: -1, 
                                 less_than_or_equal_to: 100 }
   validates :mac_address, presence: true, uniqueness: true
 

@@ -1,12 +1,13 @@
-<center><h1>Edit Shusher "<em><%= @shusher.name %></em>"</h1></center>
+<center><h1 background-color="#CCCCCC">Edit Shusher "<em><%= @shusher.name %></em>"</h1></center>
 
 <hr>
 <%= render "form" %>
 
 <script>
   var lastVal;
-
+  // need to fix the slider bar being disabled if the sound_threshold is -1.
   attachSlider(".sound-threshold", "#shusher_sound_threshold");
+  
 
   $('.disable-button').click(function() {
 
