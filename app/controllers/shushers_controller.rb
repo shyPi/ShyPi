@@ -40,7 +40,7 @@ class ShushersController < ApplicationController
   def update
     #find_shusher
     @shusher.update shusher_params
-    redirect_to  shushers_path, notice: "Shusher updated successfully."
+    redirect_to shushers_path, notice: "Shusher updated successfully."
   end
 
   def show

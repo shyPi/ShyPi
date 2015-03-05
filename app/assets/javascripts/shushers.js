@@ -1,5 +1,7 @@
 // console.log("HELLO KITTY");
 
+var mySlider;
+
 function attachSlider(containerEl, valueEl) {
   var soundThreshold = $(containerEl);
   var soundDisplay = $(containerEl + " > div");
@@ -13,23 +15,30 @@ function attachSlider(containerEl, valueEl) {
       $(valueEl).val(ui.value || initialValue);
   };
 
-  soundThreshold.slider({
+  mySlider = soundThreshold.slider({
       min: 1, max: 100,
       slide: updateSliderValue,
       create: updateSliderValue,
       value: initialValue
+
+      //???WXU hide or disable this here. 
   });
 
 };
 
 // Document.ready
-$(function() {
-  // $(document).trigger('load-js-component');
+// $(function() {
+//   $(document).trigger('load-js-component');
 
-  $('.open-shusher-profile-modal').click(function() {
-    $('#myModal').modal('show');
-    setTimeout(function() {
-      attachSlider(".sound-threshold", "#shusher_sound_threshold");
-    }, 1000)
-  })
+//   $('.open-shusher-profile-modal').click(function() {
+//     console.log("DOGS!");
+//     $('#basicModal').modal('show');
+//     setTimeout(function() {
+//        attachSlider(".sound-threshold", "#shusher_sound_threshold");
+//     }, 1000);
+//   })
+// });
+
+$(document).on("hidden.bs.modal", function (e) {
+    $(e.target).removeData("bs.modal").find(".modal-content").empty();
 });

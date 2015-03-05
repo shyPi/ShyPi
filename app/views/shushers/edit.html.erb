@@ -1,6 +1,8 @@
-<h1>Edit a shusher profile</h1>
+<h1>Edit Shusher "<em><%= @shusher.name %></em>"</h1>
+
+<hr>
 <%= render "form" %>
 
 <script>
-  attachSlider(".sound-threshold", "#shusher_sound_threshold");
+   attachSlider(".sound-threshold", "#shusher_sound_threshold");
 </script>

@@ -4,21 +4,19 @@
 <% end %>
 
 
-<%#= link_to "Create a new Shusher profile", new_shusher_path, class: "btn btn-primary btn-lg", remote: true %> 
-
-
+<%#= link_to "Create a new Shusher profile", new_shusher_path, class: "btn btn-primary btn-lg", remote: true %>
 
 <!-- Button trigger modal -->
-<button type="button" href="<%= new_shusher_path %>" data-toggle="modal" data-target="#modal" class="btn btn-primary btn-lg pull-right open-shusher-profile-modal">Add Shusher</button>
+<button type="button" href="<%= new_shusher_path %>" data-toggle="modal" data-target="#basicModal" class="btn btn-primary btn-lg pull-right open-shusher-profile-modal">Add Shusher</button>
 
 
 <!-- Modal -->
-<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">New Shusher Profile:</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="basicModalLabel">New Shusher:</h4>
       </div>
 
       <div class="modal-body">
@@ -50,8 +48,10 @@
 
             <!-- 'cancancan' restriction at Viewer level -->
             <% if can? :manage, s %>
-              <%= link_to "Edit", edit_shusher_path(s), class: "btn btn-primary btn-md", data: {toggle: 'modal', target: '#modal'} %>
-              <%= link_to "Delete",  shusher_path(s), class: "btn btn-default btn-md", method: :delete, data: {confirm: "Delete this Shusher model?"}, remote: true %>
+
+              <button type="button" href="<%= edit_shusher_path(s) %>" data-toggle="modal" data-target="#basicModal" class="btn btn-warning btn-sm"><span display="inline">Edit</span></button>
+              <%#= link_to "Edit", edit_shusher_path(s), class: "btn btn-primary btn-md", data: {toggle: 'modal', target: '#basicModal'} %>
+              <%= link_to "Delete",  shusher_path(s), class: "btn btn-default btn-sm", method: :delete, data: {confirm: "Delete this Shusher model?"}, remote: true %>
             <% end %>
           </ul>
         </div>
