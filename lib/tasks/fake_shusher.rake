@@ -2,18 +2,22 @@ namespace :fake_shusher do
 
   desc "populate users"
   task :populate_users, [:arg1] => :environment do |t, args|
-    base = User.last.email.split("@")[0][-1].to_i  #grab the last n in user email
+    if User.last
+      base = User.last.email.split("@")[0][-1].to_i  #grab the last n in user email
+    else
+      base = 0
+    end
     puts args
     puts args[:arg1]
     # generate arg1 user
     args[:arg1].to_i.times do |n|
-      User.create(email: "sample#{n+2+base}@email.com",
+      User.create!(email: "sample#{n+2+base}@email.com",
                   #password_digest: "codecore", #Faker::Lorem.sentence(2),
                   first_name: Faker::Name.first_name,
-                  last_name: Faker::Name.last_name, 
+                  last_name: Faker::Name.last_name,
                   ip_address: Faker::Internet.ip_v4_address,
  )
-    end     
+    end
   end
 
   desc "generate fake shusher objects"

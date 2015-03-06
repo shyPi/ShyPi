@@ -77,6 +77,8 @@ GEM
     bootstrap-sass (3.3.3)
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.2.19)
+    bootstrap-slider-rails (1.9.0)
+      railties (>= 3.2, < 5.0)
     bourbon (4.2.1)
       sass (~> 3.4)
       thor
@@ -312,7 +314,7 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    simple_form (3.1.0)
+    simple_form (3.1.0.rc2)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
     simplecov (0.9.1)
@@ -373,6 +375,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass
+  bootstrap-slider-rails
   byebug
   cancancan
   capybara
