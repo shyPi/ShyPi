@@ -1,0 +1,3 @@
+decay = 0.2
+threshold = 77
+shush_file = "voice-shush.wav"
