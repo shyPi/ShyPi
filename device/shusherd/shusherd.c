@@ -14,12 +14,14 @@
 #include <libdaemon/dlog.h>
 #include <libdaemon/dpid.h>
 
+// ebur128 lib is for loudness calculation
 #include <ebur128.h>
 
 #include <libconfig.h>
 
 #include <pthread.h>
 
+/* Pulse Audio libraries */
 #include <pulse/error.h>
 #include <pulse/simple.h>
 
@@ -32,7 +34,7 @@
 #define DEFAULT_SHUSHFILE "blah.wav"
 #define DEFAULT_VERBOSITY LOG_DEBUG /* This is BROKEN for anything other than LOG_DEBUG! */
 
-#define SAMPLE_TIME 3
+#define SAMPLE_TIME 3 //default sample time is 3 sec. according to spec
 
 typedef struct {
   int verbosity;
@@ -85,7 +87,7 @@ void audio_trigger(context_t *context) {
 
   input_fd = open(context->shush_filename, O_RDONLY);
   if (input_fd < 0) {
-    fprintf(stderr, "Error reading %s: %s\n", context->shush_filename, strerror(errno));
+    daemon_log(LOG_ERR, "Error reading %s: %s", context->shush_filename, strerror(errno));
     goto finish;
   }
 
